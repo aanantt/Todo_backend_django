@@ -67,3 +67,5 @@ class ToDoMaker(APIView):
         todo = ToDo.objects.filter(id=id)
         todo.delete()
         return Response(status=status.HTTP_200_OK)
+
+ 

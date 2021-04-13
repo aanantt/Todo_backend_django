@@ -16,7 +16,6 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 
 # Create your models here.
-# https://www.youtube.com/watch?v=9AECqoFmtJg
 
 class ToDo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="related_user")
