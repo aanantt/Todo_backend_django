@@ -48,7 +48,6 @@ class ToDoMaker(APIView):
         # paginator.page_size = 10
         # result_page = paginator.paginate_queryset(todo, request)
         todoSerializer = TodoSerializer(todo, many=True)
-        print(todo)
         # if todoSerializer:
             # return paginator.get_paginated_response(todoSerializer.data)
         if todoSerializer:
