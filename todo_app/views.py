@@ -39,18 +39,20 @@ class ToDoMaker(APIView):
     pagination_class = LargeResultsSetPagination
 
     def post(self, request):
-
         ToDo.objects.create(user=request.user, work=request.data['work'])
         return Response(status=status.HTTP_201_CREATED)
 
     def get(self, request):
         todo = ToDo.objects.filter(user=request.user)
-        paginator = PageNumberPagination()
-        paginator.page_size = 10
-        result_page = paginator.paginate_queryset(todo, request)
-        todoSerializer = TodoSerializer(result_page, many=True)
+        # paginator = PageNumberPagination()
+        # paginator.page_size = 10
+        # result_page = paginator.paginate_queryset(todo, request)
+        todoSerializer = TodoSerializer(todo, many=True)
+        print(todo)
+        # if todoSerializer:
+            # return paginator.get_paginated_response(todoSerializer.data)
         if todoSerializer:
-            return paginator.get_paginated_response(todoSerializer.data)
+               return Response(todoSerializer.data, status=status.HTTP_200_OK)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     def put(self, request, id):
